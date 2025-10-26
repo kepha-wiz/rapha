@@ -17,9 +17,13 @@
             --color-light: #f8f9fa;
             --color-text: #495057;
             --color-success: #28a745;
+            --color-danger: #dc3545;
+            --color-info: #17a2b8;
             --font-heading: 'Georgia', serif;
             --font-body: 'Arial', sans-serif;
             --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         * {
@@ -52,6 +56,11 @@
             top: 0;
             z-index: 1000;
             transition: var(--transition);
+        }
+
+        .header.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
         }
 
         .logo {
@@ -147,6 +156,17 @@
             background-color: #0056b3;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: white;
         }
 
         /* --- Hero Section --- */
@@ -257,13 +277,13 @@
             padding: 30px;
             background-color: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .impact-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-hover);
         }
 
         .impact-item h3 {
@@ -295,7 +315,7 @@
             flex: 1;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .about-image img {
@@ -309,10 +329,111 @@
             transform: scale(1.05);
         }
 
+        /* --- Timeline Section --- */
+        .timeline-section {
+            padding: 80px 5%;
+            background-color: var(--color-light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--color-primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--color-primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content h3 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 22px;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -100px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -100px;
+        }
+
         /* --- Programs Section --- */
         .programs-section {
             padding: 80px 5%;
+        }
+
+        .programs-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
             background-color: var(--color-light);
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
         }
 
         .programs-grid {
@@ -326,13 +447,17 @@
             background-color: #ffffff;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .program-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .program-card.hidden {
+            display: none;
         }
 
         .program-image {
@@ -361,6 +486,113 @@
             font-family: var(--font-heading);
         }
 
+        .program-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .program-tag {
+            background-color: var(--color-light);
+            color: var(--color-text);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* --- Founder Section --- */
+        .founder-section {
+            padding: 80px 5%;
+            background-color: var(--color-light);
+            text-align: center;
+        }
+
+        .founder-profile {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .founder-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .founder-profile:hover .founder-image img {
+            transform: scale(1.05);
+        }
+
+        .founder-content {
+            padding: 40px;
+        }
+
+        .founder-content h2 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+            font-size: 2rem;
+        }
+
+        .founder-content h3 {
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .founder-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .founder-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 4px solid var(--color-primary);
+            background-color: var(--color-light);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .founder-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .founder-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--color-light);
+            border-radius: 50%;
+            color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .founder-social a:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
         /* --- Testimonials Section --- */
         .testimonials-section {
             padding: 80px 5%;
@@ -376,7 +608,7 @@
             background-color: var(--color-light);
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             text-align: center;
             display: none;
         }
@@ -428,6 +660,29 @@
             background-color: var(--color-light);
         }
 
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-filter-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-filter-btn.active, .gallery-filter-btn:hover {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -441,6 +696,10 @@
             border-radius: 10px;
             height: 250px;
             cursor: pointer;
+        }
+
+        .gallery-item.hidden {
+            display: none;
         }
 
         .gallery-item img {
@@ -475,6 +734,108 @@
         .gallery-overlay i {
             color: white;
             font-size: 2rem;
+        }
+
+        /* --- Blog Section --- */
+        .blog-section {
+            padding: 80px 5%;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .blog-content h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+        }
+
+        .blog-excerpt {
+            margin-bottom: 15px;
+        }
+
+        /* --- Get Involved Section --- */
+        .get-involved-section {
+            padding: 80px 5%;
+            background-color: var(--color-light);
+        }
+
+        .involvement-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .involvement-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .involvement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .involvement-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        .involvement-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
         }
 
         /* --- Contact Section --- */
@@ -534,6 +895,55 @@
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
+        }
+
+        /* --- FAQ Section --- */
+        .faq-section {
+            padding: 80px 5%;
+            background-color: var(--color-light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
         }
 
         /* --- Footer --- */
@@ -736,6 +1146,48 @@
             transform: translateX(0);
         }
 
+        /* --- Progress Bars --- */
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-primary);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        /* --- Loading Spinner --- */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--color-primary);
+            animation: spin 1s ease infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
             .about-section {
@@ -744,6 +1196,33 @@
             
             .contact-container {
                 flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+            
+            .timeline-year {
+                left: 15px !important;
+                right: auto !important;
             }
         }
 
@@ -793,12 +1272,20 @@
             .footer-content {
                 flex-direction: column;
             }
+            
+            .founder-profile {
+                margin: 0 20px;
+            }
+            
+            .founder-content {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
+    <header class="header" id="header">
         <a href="#" class="logo">
             <i class="fas fa-heart"></i>
             Rapha Orphans International
@@ -808,8 +1295,10 @@
                 <li><a href="#work" class="nav-link">Our Work</a></li>
                 <li><a href="#impact" class="nav-link">Impact</a></li>
                 <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#founder" class="nav-link">Our Founder</a></li>
                 <li><a href="#testimonials" class="nav-link">Stories</a></li>
                 <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
@@ -850,6 +1339,21 @@
                 <p>Through vocational training and sustainable livelihood programs.</p>
             </div>
         </div>
+        
+        <!-- Fundraising Progress -->
+        <div style="max-width: 800px; margin: 60px auto 0;">
+            <h3 style="text-align: center; margin-bottom: 30px;">Current Campaign: School Supplies for 2025</h3>
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Raised: $12,450</span>
+                    <span>Goal: $20,000</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-progress="62"></div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 15px;">62% Complete • 45 days left • 127 donors</p>
+        </div>
     </section>
 
     <section id="about" class="about-section">
@@ -865,48 +1369,176 @@
         </div>
     </section>
 
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <h2 class="section-title">Our Journey</h2>
+        <p class="section-subtitle">Milestones that mark our growth and impact over the years</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2010</span>
+                    <h3>Founded</h3>
+                    <p>Rapha Orphans International was established with 15 children in a small rented space in Jinja.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2013</span>
+                    <h3>First Education Program</h3>
+                    <p>Launched our formal education sponsorship program, supporting 50 children with school fees and supplies.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2016</span>
+                    <h3>Healthcare Initiative</h3>
+                    <p>Partnership with local clinics established, providing comprehensive healthcare coverage for all children.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2019</span>
+                    <h3>Center Expansion</h3>
+                    <p>Moved to our current facility, expanding capacity to serve over 200 children and their families.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2022</span>
+                    <h3>Caregiver Empowerment</h3>
+                    <p>Launched vocational training program for guardians, creating sustainable income sources for families.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="work" class="programs-section">
         <h2 class="section-title">Our Programs</h2>
         <p class="section-subtitle">We take a holistic approach to child welfare, addressing multiple needs to ensure each child has the opportunity to thrive.</p>
+        
+        <div class="programs-filter">
+            <button class="filter-btn active" data-filter="all">All Programs</button>
+            <button class="filter-btn" data-filter="education">Education</button>
+            <button class="filter-btn" data-filter="health">Healthcare</button>
+            <button class="filter-btn" data-filter="nutrition">Nutrition</button>
+            <button class="filter-btn" data-filter="livelihood">Livelihood</button>
+        </div>
+        
         <div class="programs-grid">
-            <div class="program-card">
+            <div class="program-card" data-category="education">
                 <div class="program-image">
                     <img src="https://picsum.photos/seed/education/400/300.jpg" alt="Education Program">
                 </div>
                 <div class="program-content">
                     <h3>Education Initiative</h3>
                     <p>We provide school fees, uniforms, books, and tutoring to ensure every child has access to quality education. Our after-school programs offer additional support in core subjects and life skills.</p>
+                    <div class="program-tags">
+                        <span class="program-tag">School Fees</span>
+                        <span class="program-tag">Tutoring</span>
+                        <span class="program-tag">Supplies</span>
+                    </div>
                     <a href="#" class="btn btn-primary" style="margin-top: 15px;">Support Education</a>
                 </div>
             </div>
-            <div class="program-card">
+            <div class="program-card" data-category="health">
                 <div class="program-image">
                     <img src="https://picsum.photos/seed/healthcare/400/300.jpg" alt="Healthcare Program">
                 </div>
                 <div class="program-content">
                     <h3>Healthcare Access</h3>
                     <p>Through partnerships with local clinics, we ensure all children receive regular check-ups, vaccinations, and prompt treatment for illnesses. Our health education program teaches preventive practices.</p>
+                    <div class="program-tags">
+                        <span class="program-tag">Check-ups</span>
+                        <span class="program-tag">Vaccinations</span>
+                        <span class="program-tag">Treatment</span>
+                    </div>
                     <a href="#" class="btn btn-primary" style="margin-top: 15px;">Support Healthcare</a>
                 </div>
             </div>
-            <div class="program-card">
+            <div class="program-card" data-category="nutrition">
                 <div class="program-image">
                     <img src="https://picsum.photos/seed/nutrition/400/300.jpg" alt="Nutrition Program">
                 </div>
                 <div class="program-content">
                     <h3>Nutrition Support</h3>
                     <p>We provide daily nutritious meals and food packages for families facing food insecurity. Our school feeding program ensures children have the energy they need to learn and grow.</p>
+                    <div class="program-tags">
+                        <span class="program-tag">Daily Meals</span>
+                        <span class="program-tag">Food Packages</span>
+                        <span class="program-tag">School Feeding</span>
+                    </div>
                     <a href="#" class="btn btn-primary" style="margin-top: 15px;">Support Nutrition</a>
                 </div>
             </div>
-            <div class="program-card">
+            <div class="program-card" data-category="livelihood">
                 <div class="program-image">
                     <img src="https://picsum.photos/seed/livelihood/400/300.jpg" alt="Livelihood Program">
                 </div>
                 <div class="program-content">
                     <h3>Caregiver Empowerment</h3>
                     <p>We equip guardians with vocational skills, business training, and micro-loans to create sustainable income sources, strengthening families and communities.</p>
+                    <div class="program-tags">
+                        <span class="program-tag">Skills Training</span>
+                        <span class="program-tag">Business Support</span>
+                        <span class="program-tag">Micro-loans</span>
+                    </div>
                     <a href="#" class="btn btn-primary" style="margin-top: 15px;">Support Livelihoods</a>
+                </div>
+            </div>
+            <div class="program-card" data-category="education">
+                <div class="program-image">
+                    <img src="https://picsum.photos/seed/library/400/300.jpg" alt="Library Program">
+                </div>
+                <div class="program-content">
+                    <h3>Library & Learning Center</h3>
+                    <p>Our community library provides access to books, computers, and educational resources for children and the wider community, fostering a love of learning.</p>
+                    <div class="program-tags">
+                        <span class="program-tag">Books</span>
+                        <span class="program-tag">Computers</span>
+                        <span class="program-tag">Study Space</span>
+                    </div>
+                    <a href="#" class="btn btn-primary" style="margin-top: 15px;">Support Library</a>
+                </div>
+            </div>
+            <div class="program-card" data-category="health">
+                <div class="program-image">
+                    <img src="https://picsum.photos/seed/mentalhealth/400/300.jpg" alt="Mental Health Program">
+                </div>
+                <div class="program-content">
+                    <h3>Mental Health Support</h3>
+                    <p>We provide counseling and trauma-informed care for children who have experienced loss, abuse, or neglect, helping them heal emotionally and build resilience.</p>
+                    <div class="program-tags">
+                        <span class="program-tag">Counseling</span>
+                        <span class="program-tag">Trauma Care</span>
+                        <span class="program-tag">Support Groups</span>
+                    </div>
+                    <a href="#" class="btn btn-primary" style="margin-top: 15px;">Support Mental Health</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section id="founder" class="founder-section">
+        <h2 class="section-title">Meet Our Founder</h2>
+        <p class="section-subtitle">The vision and heart behind Rapha Orphans International</p>
+        <div class="founder-profile">
+            <div class="founder-image">
+                <img src="https://picsum.photos/seed/mukisa-ian/800/500.jpg" alt="Mukisa Ian - Founder">
+            </div>
+            <div class="founder-content">
+                <h2>Mukisa Ian</h2>
+                <h3>Founder & Executive Director</h3>
+                <p>Born and raised in Jinja, Mukisa Ian witnessed firsthand the challenges faced by orphaned and vulnerable children in his community. After losing his own parents at a young age, he experienced the struggles of growing up without adequate support, which ignited his passion to create a better future for children in similar situations.</p>
+                <p>With a background in social work and community development, Ian founded Rapha Orphans International in 2010 with just 15 children and a vision to provide holistic care that addresses not just physical needs, but emotional and spiritual healing as well.</p>
+                <div class="founder-quote">
+                    "Every child deserves to know they are loved, valued, and have hope for the future. At Rapha, we're not just changing lives—we're transforming generations through the power of love, education, and opportunity."
+                </div>
+                <p>Under Ian's leadership, Rapha has grown from a small outreach program to a comprehensive organization serving hundreds of children and families. His innovative approach to community development and his unwavering commitment to the children of Jinja has earned him recognition both locally and internationally.</p>
+                <div class="founder-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
@@ -928,52 +1560,221 @@
                 <p class="testimonial-text">"The healthcare program saved my life when I had malaria. I was so sick, but Rapha made sure I got the treatment I needed. Now I volunteer to help other children understand the importance of health practices."</p>
                 <p class="testimonial-author">- David, 14 years old</p>
             </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"I never thought I could go to university. With Rapha's support through secondary school and help with applications, I'm now studying engineering. I want to build infrastructure that helps my community thrive."</p>
+                <p class="testimonial-author">- James, 19 years old</p>
+            </div>
         </div>
         <div class="testimonial-nav">
             <span class="testimonial-dot active" data-index="0"></span>
             <span class="testimonial-dot" data-index="1"></span>
             <span class="testimonial-dot" data-index="2"></span>
+            <span class="testimonial-dot" data-index="3"></span>
         </div>
     </section>
 
     <section id="gallery" class="gallery-section">
         <h2 class="section-title">Gallery</h2>
         <p class="section-subtitle">A glimpse into the daily life and special moments at Rapha Orphans International.</p>
+        
+        <div class="gallery-filters">
+            <button class="gallery-filter-btn active" data-filter="all">All Photos</button>
+            <button class="gallery-filter-btn" data-filter="education">Education</button>
+            <button class="gallery-filter-btn" data-filter="health">Health</button>
+            <button class="gallery-filter-btn" data-filter="activities">Activities</button>
+            <button class="gallery-filter-btn" data-filter="events">Events</button>
+        </div>
+        
         <div class="gallery-grid">
-            <div class="gallery-item">
+            <div class="gallery-item" data-category="education">
                 <img src="https://picsum.photos/seed/gallery1/400/400.jpg" alt="Children learning">
                 <div class="gallery-overlay">
                     <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-category="activities">
                 <img src="https://picsum.photos/seed/gallery2/400/400.jpg" alt="Children playing">
                 <div class="gallery-overlay">
                     <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-category="health">
                 <img src="https://picsum.photos/seed/gallery3/400/400.jpg" alt="Meal time">
                 <div class="gallery-overlay">
                     <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-category="education">
                 <img src="https://picsum.photos/seed/gallery4/400/400.jpg" alt="School activities">
                 <div class="gallery-overlay">
                     <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-category="health">
                 <img src="https://picsum.photos/seed/gallery5/400/400.jpg" alt="Health check-up">
                 <div class="gallery-overlay">
                     <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-category="events">
                 <img src="https://picsum.photos/seed/gallery6/400/400.jpg" alt="Community event">
                 <div class="gallery-overlay">
                     <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="activities">
+                <img src="https://picsum.photos/seed/gallery7/400/400.jpg" alt="Sports activities">
+                <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="https://picsum.photos/seed/gallery8/400/400.jpg" alt="Graduation ceremony">
+                <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <h2 class="section-title">Latest Updates</h2>
+        <p class="section-subtitle">Stay informed about our work and the lives we're changing together</p>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/seed/blog1/400/300.jpg" alt="Blog post">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2025</span>
+                        <span><i class="far fa-user"></i> Mukisa Ian</span>
+                    </div>
+                    <h3>Breaking the Cycle of Poverty Through Education</h3>
+                    <p class="blog-excerpt">How our education sponsorship program is creating generational change in Jinja's most vulnerable communities...</p>
+                    <a href="#" class="btn btn-outline">Read More</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/seed/blog2/400/300.jpg" alt="Blog post">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> March 8, 2025</span>
+                        <span><i class="far fa-user"></i> Mukisa Ian</span>
+                    </div>
+                    <h3>Improving Health Outcomes: Our 2024 Impact Report</h3>
+                    <p class="blog-excerpt">Celebrating milestones in child health and the partnerships that made them possible...</p>
+                    <a href="#" class="btn btn-outline">Read More</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/seed/blog3/400/300.jpg" alt="Blog post">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> February 28, 2025</span>
+                        <span><i class="far fa-user"></i> Mukisa Ian</span>
+                    </div>
+                    <h3>From Classroom to Career: Success Stories</h3>
+                    <p class="blog-excerpt">Meet three young adults who transformed their lives through education and are now giving back to their communities...</p>
+                    <a href="#" class="btn btn-outline">Read More</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="get-involved-section">
+        <h2 class="section-title">Get Involved</h2>
+        <p class="section-subtitle">There are many ways to join our mission and make a difference in children's lives</p>
+        <div class="involvement-options">
+            <div class="involvement-card">
+                <div class="involvement-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Sponsor a Child</h3>
+                <p>Provide comprehensive support for a child's education, healthcare, and basic needs for $65/month.</p>
+                <button class="btn btn-primary">Become a Sponsor</button>
+            </div>
+            <div class="involvement-card">
+                <div class="involvement-icon">
+                    <i class="fas fa-donate"></i>
+                </div>
+                <h3>Make a Donation</h3>
+                <p>Your one-time or monthly gift provides critical resources where they're needed most.</p>
+                <button class="btn btn-primary">Donate Now</button>
+            </div>
+            <div class="involvement-card">
+                <div class="involvement-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Volunteer</h3>
+                <p>Share your skills and time to make a direct impact on children's lives in Jinja.</p>
+                <button class="btn btn-primary">Learn More</button>
+            </div>
+            <div class="involvement-card">
+                <div class="involvement-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Advocate</h3>
+                <p>Help us raise awareness about the needs of vulnerable children in Uganda.</p>
+                <button class="btn btn-primary">Join Our Network</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find answers to common questions about our work and how you can help</p>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does child sponsorship work?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>When you sponsor a child for $65/month, you provide comprehensive support including school fees, uniforms, books, healthcare, nutrition, and regular updates on your child's progress. You'll receive letters and photos from your sponsored child, and you can even visit them in Jinja if you wish.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How much of my donation goes directly to programs?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>85% of all donations go directly to our programs serving children and families. The remaining 15% covers administrative costs necessary to run our operations effectively. We're committed to transparency and publish our financial reports annually.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I visit the children and programs in Jinja?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We welcome visitors to our center in Jinja. We organize annual trips for sponsors and donors to see our work firsthand and meet the children. Please contact us at least 3 months in advance to arrange a visit.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do you select the children for your programs?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We work with local community leaders, schools, and churches to identify the most vulnerable children in Jinja. Our selection criteria include orphan status, family income level, health needs, and educational barriers. We prioritize children who have the least access to support systems.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I specify how my donation is used?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! You can designate your donation to specific programs like education, healthcare, nutrition, or caregiver empowerment. You can also make a general donation that we'll use where it's needed most at the time.</p>
                 </div>
             </div>
         </div>
@@ -1051,6 +1852,7 @@
                     <li><a href="#work">Our Work</a></li>
                     <li><a href="#impact">Impact</a></li>
                     <li><a href="#about">About Us</a></li>
+                    <li><a href="#founder">Our Founder</a></li>
                     <li><a href="#testimonials">Stories</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                 </ul>
@@ -1156,6 +1958,22 @@
             
             // Gallery items
             const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            // Program filters
+            const programFilters = document.querySelectorAll('.filter-btn');
+            const programCards = document.querySelectorAll('.program-card');
+            
+            // Gallery filters
+            const galleryFilters = document.querySelectorAll('.gallery-filter-btn');
+            
+            // FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            // Progress bars
+            const progressFills = document.querySelectorAll('.progress-fill');
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
 
             // --- Mobile Menu Toggle ---
             mobileMenuBtn.addEventListener('click', function() {
@@ -1179,6 +1997,37 @@
                     icon.classList.add('fa-bars');
                 });
             });
+            
+            // --- Header scroll effect ---
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // --- Animate progress bars on scroll ---
+            const animateProgressBars = () => {
+                progressFills.forEach(fill => {
+                    const progress = fill.getAttribute('data-progress');
+                    fill.style.width = progress + '%';
+                });
+            };
+            
+            // Intersection Observer for progress bars
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProgressBars();
+                        progressObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            if (progressFills.length > 0) {
+                progressObserver.observe(progressFills[0].parentElement.parentElement);
+            }
 
             // --- Modal Open/Close Functionality ---
             
@@ -1291,6 +2140,63 @@
                 currentTestimonial = (currentTestimonial + 1) % testimonials.length;
                 showTestimonial(currentTestimonial);
             }, 5000);
+            
+            // --- Program Filter Functionality ---
+            programFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active filter button
+                    programFilters.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter program cards
+                    programCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // --- Gallery Filter Functionality ---
+            galleryFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active filter button
+                    galleryFilters.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // --- FAQ Accordion ---
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Toggle active class
+                    item.classList.toggle('active');
+                    
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            });
             
             // --- Contact Form ---
             contactForm.onsubmit = function(event) {
